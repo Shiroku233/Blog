@@ -85,26 +85,8 @@
                         </section>
                         <section class="tags">
                             <h3>标签云</h3>
-                            <div class="tag-cloud">
-                                <ul>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                    <li><a href="#">a</a></li>
-                                </ul>
-                            </div>
+                            <ul class="tag-cloud" id="tagCloud">
+                            </ul>
                         </section>
                         <section class="site-info">
                             <h3>网站信息</h3>
@@ -124,7 +106,7 @@
                             <h2>文章</h2>
                             <a href="#" class="more">更多>></a>
                         </header>
-                        <ul>
+                        <ul id="articleList">
                             <li>
                                 <article>
                                     <a href="#">
@@ -176,7 +158,9 @@
                     <section class="collection">
                         <header class="section-header">
                             <h2>收藏馆</h2>
-                            <article class="movies">
+                        </header>
+                        <div class="section-item-list">
+                            <article class="section-item">
                                 <a href="#">
                                     <h3 class="item-headline">影视</h3>
                                     <img src="#" alt="影视">
@@ -187,7 +171,7 @@
                                     <li><a href="#">影视3</a></li>
                                 </ul>
                             </article>
-                            <article class="musics">
+                            <article class="section-item">
                                 <a href="#">
                                     <h3 class="item-headline">音乐</h3>
                                     <img src="#" alt="音乐">
@@ -198,7 +182,7 @@
                                     <li><a href="#">曲目3</a></li>
                                 </ul>
                             </article>
-                            <article class="animes">
+                            <article class="section-item">
                                 <a href="#">
                                     <h3 class="item-headline">动漫</h3>
                                     <img src="#" alt="动漫">
@@ -209,7 +193,7 @@
                                     <li><a href="#">动漫3</a></li>
                                 </ul>
                             </article>
-                            <article class="library">
+                            <article class="section-item">
                                 <a href="#">
                                     <h3 class="item-headline">书籍</h3>
                                     <img src="#" alt="书籍">
@@ -220,7 +204,7 @@
                                     <li><a href="#">书籍3</a></li>
                                 </ul>
                             </article>
-                            <article class="games">
+                            <article class="section-item">
                                 <a href="#">
                                     <h3 class="item-headline">游戏</h3>
                                     <img src="#" alt="游戏">
@@ -231,7 +215,7 @@
                                     <li><a href="#">游戏3</a></li>
                                 </ul>
                             </article>
-                        </header>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -243,5 +227,7 @@
             <p>京ICP备00000000号 | 京公网安备00000000号</p>
         </div>
     </footer>
+    <button class="back-to-top" title="回到顶部">回到顶部</button>
+    <script src="main.js"></script>
 </body>
 </html>
