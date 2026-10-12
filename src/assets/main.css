@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    color:#333;
+    background:#f5f7fa;
+    line-height:  1.6;
+    
+}
+a{
+    text-decoration: none;
+    color:inherit;
+}
+ul{
+    list-style: none;
+}
+img{
+    display: block;
+    max-width: 100%;
+}
