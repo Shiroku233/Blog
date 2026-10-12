@@ -64,9 +64,9 @@ const tagSize = (count) => {
                 <h3>标签云</h3>
                 <ul class="tag-cloud">
                     <li v-for="tag in tags" :key="tag.name">
-                        <a href="#" :style="{fontSize: tagSize(tag.count)+'px'}">
+                        <RouterLink :to="`/tag/${tag.name}`" :style="{fontSize: tagSize(tag.count)+'px'}">
                             {{ tag.name }}
-                        </a>
+                        </RouterLink>
                     </li>
                 </ul>
             </section>
