@@ -12,11 +12,11 @@ const articles = ref([
     <ul id="articleList">
         <li v-for="article in articles" :key="article.id">
             <article>
-                <a :href="`/article/${article.id}`">
+                <RouterLink :to="`/article/${article.id}`">
                     <h3>{{ article.title }}</h3>
                     <time class="article-date">{{article.date}}</time>
                     <p>{{ article.summary }}</p>
-                </a>
+                </RouterLink>
             </article>
         </li>
     </ul>
