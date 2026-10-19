@@ -3,14 +3,17 @@
 import { onMounted, ref } from 'vue'
 import { useRoute,useRouter } from 'vue-router'
 import { getArticle,deleteArticle } from '../api/article'
-
+import { marked } from 'marked'
 const route = useRoute()
 const router=useRouter()
 const article = ref(null)
+const renderedContent=ref('')
+
 
 onMounted(async () => {
   const res = await getArticle(route.params.id)
   article.value = res.data
+  renderedContent.value=marked(res.data.content||'')
 })
 const handleDelete = async () => {
   if (!confirm('确定删除这篇文章吗？')) return
@@ -44,7 +47,7 @@ const handleDelete = async () => {
                         </div>
                     </div>
                 </header>
-                <div class="article-content">{{article.content}}</div>
+                <div class="article-content" v-html="renderedContent"></div>
                 <!-- 操作按钮 -->
                 <div class="actions">
                     <RouterLink :to="`/edit/${article.id}`" class="btn btn-edit">
@@ -104,6 +107,26 @@ const handleDelete = async () => {
     line-height: 1.8;
     color:#333;
     margin-bottom: 40px;
+}
+.article-content :deep(h1),
+.article-content :deep(h2),
+.article-content :deep(h3) {
+  margin: 20px 0 10px;
+}
+.article-content :deep(p) {
+  margin-bottom: 12px;
+}
+.article-content :deep(code) {
+  background: #f5f7fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.article-content :deep(pre) {
+  background: #f5f7fa;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
 }
 .article-nav{
     display:flex;

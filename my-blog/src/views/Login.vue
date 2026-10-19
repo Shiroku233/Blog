@@ -19,7 +19,7 @@ const handleLogin = async () => {
     })
     localStorage.setItem('token', res.data.token)
     localStorage.setItem('username', res.data.username)
-    router.push('/')
+    window.location.href = '/'
   } catch (err) {
     error.value = err.response?.data?.message || '登录失败'
   } finally {
