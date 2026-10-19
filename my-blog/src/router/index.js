@@ -25,6 +25,11 @@ const routes=[
         component:()=>import('../views/ArticleEdit.vue')
     },
     {
+        path:'/login',
+        name:'Login',
+        component:()=>import('../views/Login.vue')
+    },
+    {
         path:'/tag/:tag',
         name:'TagArticles',
         component:TagArticles,

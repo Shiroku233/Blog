@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express=require('express')
 const cors=require('cors')
 const sequelize=require('./config/db')
@@ -6,6 +8,12 @@ const Article=require('./models/Article')
 const app=express()
 app.use(cors())
 app.use(express.json())
+
+const authRouter = require('./routes/auth')
+app.use('/api/auth', authRouter)
+
+const auth=require('./middlewares/auth')
+
 
 
 
@@ -29,7 +37,7 @@ sequelize.sync().then(()=>{
 })
 
 // 发布文章
-app.post('/api/articles', async (req, res) => {
+app.post('/api/articles', auth,async (req, res) => {
   try {
     const { title, content, summary, date, tags } = req.body
 
@@ -52,7 +60,7 @@ app.post('/api/articles', async (req, res) => {
 })
 
 // 更新文章
-app.put('/api/articles/:id', async (req, res) => {
+app.put('/api/articles/:id',auth, async (req, res) => {
   const article = await Article.findByPk(req.params.id)
   if (!article) return res.status(404).json({ message: '文章不存在' })
   await article.update(req.body)
@@ -60,9 +68,10 @@ app.put('/api/articles/:id', async (req, res) => {
 })
 
 // 删除文章
-app.delete('/api/articles/:id', async (req, res) => {
+app.delete('/api/articles/:id',auth, async (req, res) => {
   const article = await Article.findByPk(req.params.id)
   if (!article) return res.status(404).json({ message: '文章不存在' })
   await article.destroy()
   res.json({ message: '已删除' })
 })
+
