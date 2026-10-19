@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getArticles } from '../api/article'
 
@@ -10,7 +10,7 @@ const articles=ref([])
 const tag=computed(()=>route.params.tag)
 
 const filteredArticles=computed(()=>
-    articles.filter(a=>a.tags&&a.tags.includes(tag.value))
+    articles.value.filter(a=>a.tags&&a.tags.includes(tag.value))
 )
 onMounted(async () => {
   const res = await getArticles()
