@@ -12,6 +12,7 @@
                     <li><a href="#">标签</a></li>
                     <li><a href="#">搜索</a></li>
                     <li><a href="#">关于我</a></li>
+                    <li><RouterLink to="/edit">发布</RouterLink></li>
                 </ul>
             </div>
         </div>

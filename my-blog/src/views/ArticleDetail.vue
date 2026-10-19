@@ -1,16 +1,27 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { getArticle } from '../api/article'
+import { useRoute,useRouter } from 'vue-router'
+import { getArticle,deleteArticle } from '../api/article'
 
 const route = useRoute()
+const router=useRouter()
 const article = ref(null)
 
 onMounted(async () => {
   const res = await getArticle(route.params.id)
   article.value = res.data
 })
+const handleDelete = async () => {
+  if (!confirm('确定删除这篇文章吗？')) return
+
+  try {
+    await deleteArticle(route.params.id)
+    router.push('/')
+  } catch (err) {
+    alert('删除失败：' + (err.response?.data?.message || err.message))
+  }
+}
 </script>
 <template>
     <main v-if="article">
@@ -34,10 +45,15 @@ onMounted(async () => {
                     </div>
                 </header>
                 <div class="article-content">{{article.content}}</div>
-                <nav class="article-nav">
-                    <RouterLink v-if="prev" :to="`/article/${prev.id}`"> <-{{prev.title}}</RouterLink>
-                    <RouterLink v-if="next" :to="`/article/${next.id}`"> ->{{next.title}}</RouterLink>
-                </nav>
+                <!-- 操作按钮 -->
+                <div class="actions">
+                    <RouterLink :to="`/edit/${article.id}`" class="btn btn-edit">
+                        编辑
+                    </RouterLink>
+                    <button class="btn btn-delete" @click="handleDelete">
+                        删除
+                    </button>
+                </div>
             </article>
         </div>
     </main>
@@ -102,5 +118,34 @@ onMounted(async () => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+.btn {
+  padding: 6px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+.btn-edit {
+  background: #1e80ff;
+  color: #fff;
+}
+.btn-edit:hover {
+  background: #0d6efd;
+}
+.btn-delete {
+  background: #fff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+.btn-delete:hover {
+  background: #e74c3c;
+  color: #fff;
 }
 </style>

@@ -15,6 +15,16 @@ const routes=[
         component: () => import('../views/ArticleDetail.vue'),
     },
     {
+        path:'/edit/:id',
+        name:'ArticleCreate',
+        component:()=>import('../views/ArticleEdit.vue')
+    },
+    {
+        path:'/edit',
+        name:'ArticleEdit',
+        component:()=>import('../views/ArticleEdit.vue')
+    },
+    {
         path:'/tag/:tag',
         name:'TagArticles',
         component:TagArticles,
