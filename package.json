@@ -1,0 +1,26 @@
+{
+  "name": "myblog-root",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently -n front,back -c blue,green \"npm run dev --prefix my-blog\" \"npm run dev --prefix server\"",
+    "start": "concurrently -n front,back -c blue,green \"npm run dev --prefix my-blog\" \"node server/app.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiroku233/Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shiroku233/Blog/issues"
+  },
+  "homepage": "https://github.com/Shiroku233/Blog#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
